@@ -1,0 +1,9 @@
+.stock{
+    background-color: yellow;
+    height:100px;
+}
+
+span{
+    display: inline-block;
+    verical-align: middle;
+}
