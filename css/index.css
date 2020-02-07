@@ -21,4 +21,9 @@ div.addStock{
     padding-top: 10px;
 }
 
+div.subHeader{
+    width: 100%;
+    align-items: center;
+    align-content: center;
+}
 
