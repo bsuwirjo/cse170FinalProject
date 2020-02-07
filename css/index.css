@@ -1,9 +1,24 @@
-.stock{
-    background-color: yellow;
-    height:100px;
+div.stock{
+    height: 90px;
+    width: 100%;
+    border-bottom: 1px solid;
+    border-color: black;
+    background-color:white;
+    padding-bottom: 10px;
 }
 
-span{
-    display: inline-block;
-    verical-align: middle;
+
+div.headerGroup {
+    
+    border-bottom: 3px solid;
+    border-color: black;
+    background-color: white;
 }
+
+div.addStock{
+    align-content: center;
+    margin-left: 93%;
+    padding-top: 10px;
+}
+
+
