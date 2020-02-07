@@ -6,5 +6,8 @@ var path = require('path');
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/test.html'));
 });
+app.get('/addStock.html', function(req,res){
+    res.sendFile(path.join(__dirname + '/addStock.html'));
+});
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
