@@ -1,0 +1,23 @@
+<div id="id01"></div>
+
+<script>
+var reqArr = ["TIME_SERIES_DAILY", "MSFT", "1min", "H3FTWBXJYQ1YB9CK"]
+var xmlhttp = new XMLHttpRequest();
+var base = "https://www.alphavantage.co/query?"
+var url = base + "function=" + reqArr[0] + "&symbol=" + reqArr[1] + "&interval=" + reqArr[2] + "&apikey="+reqArr[3]
+console.log("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=MSFT&interval=5min&apikey=demo")
+console.log(url)
+
+xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var myArr = JSON.parse(this.responseText);
+        myFunction(myArr);
+    }
+};
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
+
+function myFunction(arr) {
+    console.log(arr)
+}
+</script>
