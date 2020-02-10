@@ -4,6 +4,13 @@ div.stock{
     border-bottom: 1px solid;
     padding-bottom: 10px;
 }
+div.stock:hover{
+    background-color:lightblue;
+}
+
+.icon:hover{
+    background-color: lightblue;
+}
 
 
 div.headerGroup {
