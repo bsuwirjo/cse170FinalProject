@@ -11,19 +11,19 @@
     <link rel="stylesheet" type="text/css" href="css/index.css"/>
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <!--   <script type="text/javascript" src="js/listener.js"></script> -->
-    <title>Hello, world!</title>
+    <title class="home">NoticeMe</title>
   </head>
   <body>
     <div class="container">
      <div class="headerGroup">
       <div class="row">
         <div class="col-sm">
-          <h1> NoticeMe</h1>
+          <h1 class="home"> NoticeMe</h1>
         </div>
         <div class="home">
           <svg class="bi bi-house-fill" width="40px" height="40px" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path d="M8.5 12.995V16.5a.5.5 0 01-.5.5H4a.5.5 0 01-.5-.5v-7a.5.5 0 01.146-.354l6-6a.5.5 0 01.708 0l6 6a.5.5 0 01.146.354v7a.5.5 0 01-.5.5h-4a.5.5 0 01-.5-.5V13c0-.25-.25-.5-.5-.5H9c-.25 0-.5.25-.5.495z"/>
-            <path fill-rule="evenodd" d="M15 4.5V8l-2-2V4.5a.5.5 0 01.5-.5h1a.5.5 0 01.5.5z" clip-rule="evenodd"/>
+            <path fill-rule="evenodd" d="M15 4.5V8l-2-2V4.5 a.5.5 0 01.5-.5h1a.5.5 0 01.5.5z" clip-rule="evenodd"/>
           </svg>
         </div>
         <div class="col-sm refresh">
@@ -76,7 +76,7 @@
        <div class="col-sm price">
          <h6>
 
-         +0.55(.78%)
+         +0.55 (.78%)
          </h6>
        </div>
       </div>
@@ -86,12 +86,18 @@
        <div class="col-sm">
 
        <h3>New Stock</h3>
-       <h4>Alphabet Inc</h4>
+       <h4>Corporation</h4>
        </div>
        <div class="col-sm price">
          <h5>
            Price
          </h5>
+       </div>
+       <div class="col-sm-auto price">
+        <svg class="bi bi-plus" width="50px" height="50px" viewbox="5 4 20 20" fill="lightgreen" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M10 5.5a.5.5 0 01.5.5v4a.5.5 0 01-.5.5H6a.5.5 0 010-1h3.5V6a.5.5 0 01.5-.5z" clip-rule="evenodd"/>
+          <path fill-rule="evenodd" d="M9.5 10a.5.5 0 01.5-.5h4a.5.5 0 010 1h-3.5V14a.5.5 0 01-1 0v-4z" clip-rule="evenodd"/>
+        </svg>
        </div>
        <div class="col-sm price">
          <h6>
@@ -109,10 +115,8 @@
     
     
   </div>
-    <script>
-      $(".bi-house-fill").click(function(){
-        window.location.href = './';
-      });
+    <script src="js/listener.js">
+     
     </script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

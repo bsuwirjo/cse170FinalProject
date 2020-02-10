@@ -1,6 +1,15 @@
-$(document).ready(function() {
-    // all custom jQuery will go here
-    $(".home").click(function(){
-        alert( "Handler for .click() called." );
-    });
-});
+$(".home").click(function(){
+        window.location.href = './';
+      });
+
+
+$(".bi-arrow-repeat").click(function(){
+    alert("Refreshing!");
+    //TBD
+})
+
+$(".bi-gear-fill").click(function(){
+    alert("Settings!");
+    //TBD
+})
+ 

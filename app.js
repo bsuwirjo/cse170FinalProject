@@ -2,15 +2,7 @@ const express = require('express')
 const app = express()
 const port = 3000
 var path = require('path');
-import $ from jQuery;
 
-$(document).ready(function() {
-    // all custom jQuery will go here
-    $("div.home").click(function(){
-        alert( "Handler for .click() called." );
-
-    });
-});
 
 app.use(express.static(__dirname + '/public'));
 app.use('/css',express.static(__dirname +'/css'));
