@@ -24,4 +24,24 @@ div.subHeader{
     align-items: center;
     align-content: center;
 }
+div.gearDiv{
+    left: 80%;
+    position: absolute;
+}
 
+.price{
+    padding-top: 20px;
+}
+
+h4{
+    text-decoration: underline;
+}
+div.refresh{
+    position: absolute;
+    left: 77%;
+}
+
+div.home{
+    position: absolute;
+    left: 75%;
+}
