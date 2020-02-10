@@ -9,7 +9,8 @@ $(".bi-arrow-repeat").click(function(){
 })
 
 $(".bi-gear-fill").click(function(){
-    alert("Settings!");
+    //alert("Settings!");
+    window.location.href = '/settings';
     //TBD
 })
  
