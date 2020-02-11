@@ -1,15 +1,7 @@
-<head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-</head>
-
-<div id="id01"></div>
-
-<script>
 var stockNames = ["AAPL", "SNAP", "GOOGL"]
-var stockArray = []
 var reqArr = ["GLOBAL_QUOTE", "MSFT", "1min", "H3FTWBXJYQ1YB9CK"]
 var base = "https://www.alphavantage.co/query?"
-
+var stockArray = []
 
 var stockDictionary = new Object();
 for(var i = 0; i < stockNames.length; i++){
@@ -40,5 +32,9 @@ fetchData(function (arr) {
     }
 })
 
-console.log(stockArray)
-</script>
+var stockJson = {}
+stockJson["Stocks"] = stockArray;
+
+exports.view = function(request, response){
+	response.render('index', stockArray);
+};
