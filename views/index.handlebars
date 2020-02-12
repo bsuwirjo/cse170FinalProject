@@ -23,36 +23,21 @@
       </button>
 </nav>
 
-{{#each friends}}
+{{#each stocks}}
 <div class="container stock">
   <div class="row">
     <div class="col">
-      Google
+      {{symbol}}
     </div>
     <div class="col">
-      192.6
+      {{previous close}}
     </div>
     <div class="col">
-      +.76%
+      {{change percent}}
     </div>
   </div>
 </div>
 {{/each}}
-
-<div class="container stock">
-  <div class="row">
-    <div class="col">
-      Apple
-    </div>
-    <div class="col">
-      381.6
-    </div>
-    <div class="col">
-      +.16%
-    </div>
-  </div>
-</div>
-
 
 <a href="#" class="float">
     <img class = "my-float" src="open-iconic/svg/plus.svg" alt="icon name">

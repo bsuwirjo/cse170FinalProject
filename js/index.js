@@ -32,3 +32,4 @@ fetchData(function (arr) {
         stockArray.push(arr[i]["Global Quote"])
     }
 })
+var stockJson = {"stocks":stockArray}
