@@ -1,43 +1,127 @@
+<!doctype html>
+
+<html>
 <head>
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<title>Notice Me!</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
 
-<link rel="stylesheet" type="text/css" href="css/test.css"/>
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/hci-friends.js"></script>
 
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
+	<link href="css/bootstrap-theme.css" rel="stylesheet">
+	<link href="css/css.css" rel="stylesheet">
+
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+	<!--<link href="css/bootstrap.css" rel="stylesheet">-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 </head>
 
-
 <body>
+	<div id="main">
+		<div data-role="page" id="homePage" style = "text-align: center">
+		   <div id="mainHeading">
+			 <h1>Notice Me!</h1>
+		   </div>
 
-<nav class="navbar navbar-light bg-light">
-      <span class="navbar-text">
-        Notice Me!
-      </span>
+		   <div style ="margin: 2em" >
+		     <div class="form-group" >
+		       <label for="exampleInputEmail1">Email address</label>
+		       <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+		   	</div>
+		     <div class="form-group">
+		       <label for="exampleInputPassword1">Password</label>
+		       <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+		     </div>
+		     <button type="submit" class="btn btn-primary" onclick="window.location.href = '#home'">Submit</button>
+		   </div>
 
-      <button type="button" class="btn btn-default btn-lg">
-          <img src="open-iconic/svg/cog.svg" alt="icon name" style ="height:1em">
-      </button>
-</nav>
+		</div>
+		<div data-role="page" id="home">
 
-{{#each stocks}}
-<div class="container stock">
-  <div class="row">
-    <div class="col">
-      {{symbol}}
-    </div>
-    <div class="col">
-      {{previous close}}
-    </div>
-    <div class="col">
-      {{change percent}}
-    </div>
-  </div>
-</div>
-{{/each}}
+			<nav class="navbar navbar-light bg-light">
 
-<a href="#" class="float">
-    <img class = "my-float" src="open-iconic/svg/plus.svg" alt="icon name">
-</a>
+			  <a class="navbar-brand" href="#">Notice Me!</a>
+			  <button type="button" class="btn btn-default btn-lg" onclick="window.location.href = '#settings'" >
+				  <img src="../open-iconic/svg/cog.svg" alt="icon name" style ="height:1em">
+			  </button>
+			</nav>
+
+			{{#each stocks}}
+			<div class="container stock" id="home">
+			  <div class="row">
+			    <div class="col">
+			      {{symbol}}
+			    </div>
+			    <div class="col">
+			      {{price}}
+			    </div>
+			    <div class="col">
+			      {{changePercent}}
+			    </div>
+			  </div>
+			</div>
+			{{/each}}
+
+			<a href="#addStock" class="float">
+			    <img class = "my-float" src="../open-iconic/svg/plus.svg" alt="icon name">
+			</a>
+		</div>
+
+		<div data-role="page" id="addStock">
+			<nav class="navbar navbar-light bg-light">
+				<button type="button" class="btn btn-default btn-lg" onclick="window.location.href = '#home'">
+					<img src="../open-iconic/svg/arrow-left.svg" alt="icon name" style ="height:1em">
+				</button>
+				  <span class="navbar-text">
+					Notice Me!
+				  </span>
+			</nav>
+			<div style = "margin:2em">
+				<div class="form-group" >
+				  <label for="exampleInputEmail1">Enter Stock</label>
+				  <input  class="form-control" aria-describedby="emailHelp" placeholder="Stock Name">
+			   </div>
+
+			   <div style = "margin-top:2em"> <h4>Your stocks <h4></div>
+				 <hr>
+				{{#each stocks}}
+				 <div>
+					  {{symbol}}
+				 </div>
+				{{/each}}
+			</div>
+		</div>
+
+
+		<div data-role="page" id="settings">
+			<nav class="navbar navbar-light bg-light">
+				<button type="button" class="btn btn-default btn-lg" onclick="window.location.href = '#home'">
+					<img src="../open-iconic/svg/arrow-left.svg" alt="icon name" style ="height:1em">
+				</button>
+				  <span class="navbar-text">
+					Notice Me!
+				  </span>
+			</nav>
+
+			<div style = "margin:2em">
+				<div class="form-group" >
+				  <label>Percent Increase Notification</label>
+				  <input class="form-control" aria-describedby="emailHelp" placeholder="Percentage">
+
+				  <label>Percent Decrease Notification</label>
+				  <input class="form-control" aria-describedby="emailHelp" placeholder="Percentage">
+			   </div>
+		</div>
+	</div>
+</body>
+</html>
