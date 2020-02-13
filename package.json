@@ -19,6 +19,6 @@
     "update-notifier": "^4.0.0"
   },
   "engines": {
-    "node": "0.10.x"
+    "node": "13.0.1"
   }
 }
