@@ -1,8 +1,10 @@
 .stock{
     border-top: 2px solid #999966;
-    background-color:#ffffcc;
     height:50px;
 
+}
+.stock:hover{
+	background-color: lightblue;
 }
 .row{
     vertical-align: middle;

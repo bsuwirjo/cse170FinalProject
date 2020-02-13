@@ -1,5 +1,4 @@
 // Get all of our friend data
-var data = require('../data.json');
 
 var stockNames = ["AAPL", "SNAP", "GOOGL"]
 var stockArray = []
