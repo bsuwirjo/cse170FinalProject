@@ -1,30 +1,47 @@
-const express = require('express')
-var hbs = require( 'express-handlebars');
-const app = express()
-const port = 3000
+
+/**
+ * Module dependencies.
+ */
+
+var express = require('express');
+var http = require('http');
 var path = require('path');
+var handlebars = require('express3-handlebars')
+
+
 var index = require('./routes/index');
+var add = require('./routes/add');
+// Example route
+// var user = require('./routes/user');
 
-app.set('view engine', 'hbs');
-app.use(express.static(__dirname + '/public'));
-app.use('/css',express.static(__dirname +'/css'));
-app.use('/js',express.static(__dirname +'/js'));
-app.use('/views', express.static(__dirname +'/views'));
-app.use('/open-iconic', express.static(__dirname +'/open-iconic'));
+var app = express();
 
+// all environments
+app.set('port', process.env.PORT || 3000);
+app.set('views', path.join(__dirname, 'views'));
+app.engine('handlebars', handlebars());
+app.set('view engine', 'handlebars');
+app.use(express.favicon());
+app.use(express.logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded());
+app.use(express.methodOverride());
+app.use(express.cookieParser('Intro HCI secret key'));
+app.use(express.session());
+app.use(app.router);
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', (req,res) => {
-    res.sendFile(path.join(__dirname + index.view));
-})
-app.get('/addStock.html', function(req,res){
-    res.sendFile(path.join(__dirname + '/addStock.html'));
+// development only
+if ('development' == app.get('env')) {
+  app.use(express.errorHandler());
+}
+
+// Add routes here
+app.get('/', index.view);
+app.get('/add', add.addFriend);
+// Example route
+// app.get('/users', user.list);
+
+http.createServer(app).listen(app.get('port'), function(){
+  console.log('Express server listening on port ' + app.get('port'));
 });
-
-// view engine setup
-
-
-
-app.get('/settings', function(req,res) {
-    res.sendFile(path.join(__dirname + '/views/settings.html'));
-} )
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))

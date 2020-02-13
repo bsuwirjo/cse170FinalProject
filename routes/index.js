@@ -1,3 +1,6 @@
+// Get all of our friend data
+var data = require('../data.json');
+
 var stockNames = ["AAPL", "SNAP", "GOOGL"]
 var stockArray = []
 var reqArr = ["GLOBAL_QUOTE", "MSFT", "1min", "H3FTWBXJYQ1YB9CK"]
@@ -8,32 +11,35 @@ var stockDictionary = new Object();
 for(var i = 0; i < stockNames.length; i++){
     stockDictionary[stockNames[i]] = new Object();
 }
-console.log(stockDictionary)
 
-function fetchData(callback) {
-    var requests = [];
+var request = require('request');
 
-    for(var i = 0; i < stockNames.length; i++)
+var dataArray = []
+request.get('/external-api', function(req, res){
+	for(var i = 0; i < stockNames.length; i++)
     {
         var url = base + "function=" + reqArr[0] + "&symbol=" + stockNames[i] + "&interval=" + reqArr[2] + "&apikey="+reqArr[3]
-        requests.push($.get(url))
-    }
+		request(url, function (error, response, body) {
+			  //console.log('error:', error); // Print the error if one occurred and handle it
+			  //console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
 
-    $.when.apply($, requests).then(function () {
-        var array = $.map(arguments, function (arg) {
-            return arg[0];
-        });
-        callback(array);
-    })
-}
+              body = body.replace("01. symbol", "symbol");
+              body = body.replace("05. price", "price");
+              body = body.replace("10. change percent", "changePercent");
 
-fetchData(function (arr) {
-    for(var i = 0; i < arr.length; i++){
-        stockArray.push(arr[i]["Global Quote"])
+              var tmp = JSON.parse(body)
+              console.log(tmp["Global Quote"])
+              dataArray.push(tmp["Global Quote"])
+			  //res.send(body)
+		});
     }
 })
-var stockJson = {"stocks":stockArray}
+
+
 
 exports.view = function(request, response){
-	response.render('index', stockJson);
+	//console.log(data);
+    var data = {stocks: dataArray}
+    console.log(data)
+	response.render('index', data);
 };
