@@ -1,10 +1,7 @@
-.stock{
-    border-top: 2px solid #999966;
-    height:50px;
 
-}
 .stock:hover{
-	background-color: lightblue;
+	background-color: #03adfc;
+	
 }
 .row{
     vertical-align: middle;
@@ -15,7 +12,7 @@
 	height:60px;
 	bottom:40px;
 	right:40px;
-	background-color:#0C9;
+	background-color: #03adfc;
 	color:#FFF;
 	border-radius:50px;
 	text-align:center;
@@ -25,4 +22,18 @@
 .my-float{
     height:1em;
 	margin-top:22px;
+}
+
+.navbutton{
+	background-color: #03adfc;
+}
+
+.myNav{
+	border-bottom: 1px solid black;
+	margin-bottom: 10px
+}
+
+.title{
+	color: #03adfc;
+	font-size: 30px;
 }

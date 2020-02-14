@@ -45,22 +45,25 @@
 
 		</div>
 		<div data-role="page" id="home">
-			<div data-role="navbar">
+			<div data-role="navbar" class="myNav">
 				  <ul>
-					  <li><span class="navbar-brand">Notice Me</span></li>
+					  <li><span class="navbar-brand title">Notice Me</span></li>
 					  <li></li>
-					  <li></li>
+					  <li><span class="navbar-brand"> Home </span></li>
 					  <li></li>
 					  <li>
-						  <button type="button" class="btn btn-default btn-lg" onclick="window.location.href = '#settings'" >
+						  <button type="button" class="btn btn-default btn-lg navbutton" onclick="window.location.href = '#settings'" >
 							  <img src="open-iconic/svg/cog.svg" alt="icon name" style ="height:1em">
 						  </button>
 					  </li>
 				  </ul>
 			  </div>
-
+			<ul class="list-group list-group-flush">
+				
+			
 			{{#each stocks}}
-			<div class="container stock" id="home">
+			<li class="list-group-item stock">
+			<div class="container" id="home">
 			  <div class="row">
 			    <div class="col">
 			      {{symbol}}
@@ -73,19 +76,20 @@
 			    </div>
 			  </div>
 			</div>
+			</li>
 			{{/each}}
-
+			</ul>
 			<a href="#addStock" class="float">
 			    <img class = "my-float" src="open-iconic/svg/plus.svg" alt="icon name">
 			</a>
 		</div>
 
 		<div data-role="page" id="addStock">
-		  <div data-role="navbar">
+		  <div data-role="navbar" class="myNav">
 				<ul>
-					<li><span class="navbar-brand">Notice Me</span></li>
+					<li><span class="navbar-brand title">Notice Me</span></li>
 					<li></li>
-					<li></li>
+					<li><span class="navbar-brand"> Add Stock </span></li>
 					<li></li>
 					<li>
 					  <button type="button" onclick="window.location.href = '#home'">
@@ -104,21 +108,25 @@
 
 			   <div style = "margin-top:2em"> <h4>Your stocks <h4></div>
 				 <hr>
+				 <ul class="listgroup">
 				{{#each stocks}}
-				 <div>
+				<li class="list-group-item stock">
+				 <div class="stock">
 					  {{symbol}}
 				 </div>
+				 </li>
 				{{/each}}
+				</ul>
 			</div>
 		</div>
 
 
 		<div data-role="page" id="settings">
-			<div data-role="navbar">
+			<div data-role="navbar" class="myNav">
   				<ul>
-  					<li><span class="navbar-brand">Notice Me</span></li>
+  					<li><span class="navbar-brand title">Notice Me</span></li>
   					<li></li>
-  					<li></li>
+  					<li><span class="navbar-brand"> Settings </span></li>
   					<li></li>
   					<li>
   					  <button type="button" onclick="window.location.href = '#home'">
