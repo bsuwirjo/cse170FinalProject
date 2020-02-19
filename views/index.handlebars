@@ -27,7 +27,7 @@
 
 <body>
 	<div id="main">
-		<div data-role="page" id="homePage" style = "text-align: center">
+		{{!-- <div data-role="page" id="homePage" style = "text-align: center">
 		   <div id="mainHeading">
 			 <h1>Notice Me!</h1>
 		   </div>
@@ -48,25 +48,7 @@
 			 </form>
 		   </div>
 			
-		</div>
-		<div data-role="page" id="createacct" style = "text-align: center">
-		   <div id="mainHeading">
-			 <h1>Notice Me!</h1>
-		   </div>
-
-		   <div style ="margin: 2em" >
-		     <div class="form-group" >
-		       <label for="exampleInputEmail1">Email address</label>
-		       <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-		   	</div>
-		     <div class="form-group">
-		       <label for="exampleInputPassword1">Password</label>
-		       <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-		     </div>
-			 <button type="submit" class="btn btn-secondary" onclick="window.location.href = '#home'"> Create Account</button>
-		   </div>
-
-		</div>
+		</div> --}}
 		<div data-role="page" id="home">
 			<div data-role="navbar" class="myNav">
 				  <ul>
@@ -75,7 +57,7 @@
 					  <li><span class="navbar-brand"> Home </span></li>
 					  <li></li>
 					  <li>
-						  <button type="button" class="btn btn-default btn-lg navbutton" onclick="window.location.href = '#settings'" >
+						  <button type="button" class="btn btn-default btn-lg navbutton" onclick="window.location.href = '/home#settings'" >
 							  <img src="open-iconic/svg/cog.svg" alt="icon name" style ="height:1em">
 						  </button>
 					  </li>
@@ -115,7 +97,7 @@
 					<li><span class="navbar-brand"> Add Stock </span></li>
 					<li></li>
 					<li>
-					  <button type="button" onclick="window.location.href = '#home'">
+					  <button type="button" onclick="window.location.href = '/home#home'">
 		  			    <span> <img src="open-iconic/svg/arrow-left.svg" alt="icon name" style ="height:1em"> </span>
 		  			  </button>
 					</li>
@@ -123,12 +105,13 @@
 			</div>
 
 			<div style = "margin:2em">
+				<form action="/addStock" method="POST">
 				<div class="form-group" >
 				  <label for="exampleInputEmail1">Enter Stock</label>
-				  <input  class="form-control" aria-describedby="emailHelp" placeholder="Stock Name">
-				  <button type="submit" class="btn btn-primary" onclick="window.location.href = '#home'">Submit</button>
+				  <input  class="form-control" name="stock" value="" aria-describedby="emailHelp" placeholder="Stock Name">
+				  <button type="submit" class="btn btn-primary" onclick="window.location.href = '/home#home'">Submit</button>
 			   </div>
-
+				</form>
 			   <div style = "margin-top:2em"> <h4>Your stocks <h4></div>
 				 <hr>
 				 <ul class="listgroup">
@@ -152,7 +135,7 @@
   					<li><span class="navbar-brand"> Settings </span></li>
   					<li></li>
   					<li>
-  					  <button type="button" onclick="window.location.href = '#home'">
+  					  <button type="button" onclick="window.location.href = '/home#home'">
   		  			    <span> <img src="open-iconic/svg/arrow-left.svg" alt="icon name" style ="height:1em"> </span>
   		  			  </button>
   					</li>
@@ -167,9 +150,28 @@
 
 				  <label>Percent Decrease Notification</label>
 				  <input class="form-control" aria-describedby="emailHelp" placeholder="Percentage">
-				  <button type="submit" class="btn btn-primary" onclick="window.location.href = '#home'">Submit</button>
+				  <button type="submit" class="btn btn-primary" onclick="window.location.href = '/home#home'">Submit</button>
 			   </div>
 		</div>
+
 	</div>
+			<div data-role="page" id="createacct" style = "text-align: center">
+		   <div id="mainHeading">
+			 <h1>Notice Me!</h1>
+		   </div>
+
+		   <div style ="margin: 2em" >
+		     <div class="form-group" >
+		       <label for="exampleInputEmail1">Email address</label>
+		       <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+		   	</div>
+		     <div class="form-group">
+		       <label for="exampleInputPassword1">Password</label>
+		       <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+		     </div>
+			 <button type="submit" class="btn btn-secondary" onclick="window.location.href = '/home#home'"> Create Account</button>
+		   </div>
+
+		</div>
 </body>
 </html>

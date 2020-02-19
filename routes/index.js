@@ -6,6 +6,7 @@ var reqArr = ["GLOBAL_QUOTE", "MSFT", "1min", "H3FTWBXJYQ1YB9CK"]
 var base = "https://www.alphavantage.co/query?"
 var fs = require('fs');
 
+
 var stockDictionary = new Object();
 for(var i = 0; i < stockNames.length; i++){
     stockDictionary[stockNames[i]] = new Object();
