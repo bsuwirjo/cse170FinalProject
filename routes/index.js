@@ -4,7 +4,7 @@ var stockNames = ["AAPL", "SNAP", "GOOGL"]
 var stockArray = []
 var reqArr = ["GLOBAL_QUOTE", "MSFT", "1min", "H3FTWBXJYQ1YB9CK"]
 var base = "https://www.alphavantage.co/query?"
-
+var fs = require('fs');
 
 var stockDictionary = new Object();
 for(var i = 0; i < stockNames.length; i++){
@@ -33,7 +33,6 @@ request.get('/external-api', function(req, res){
 		});
     }
 })
-
 
 
 exports.view = function(request, response){

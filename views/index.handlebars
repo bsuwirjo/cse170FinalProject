@@ -9,6 +9,7 @@
 	<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script src="js/login.js"></script>
 	<!--<script src="js/bootstrap.js"></script>-->
 
 	<link href="css/css.css" rel="stylesheet">
@@ -32,6 +33,28 @@
 		   </div>
 
 		   <div style ="margin: 2em" >
+			   <form action="./login" method="POST">
+		     <div class="form-group">
+		       <label for="exampleInputEmail1">Enter Email address</label>
+		       <input type="email" class="form-control" id="exampleInputEmail1" name="email" value="a@b.com" aria-describedby="emailHelp" placeholder="Enter email" required>
+		   	</div>
+		     <div class="form-group">
+		       <label for="exampleInputPassword1">Enter Password</label>
+		       <input type="password" name="password" value="1234" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
+		     </div>
+		     <button type="submit" class="btn btn-primary" onclick="window.location.href = '#home'">Submit</button>
+			 
+			 <button type="submit" class="btn btn-secondary" > Create Account</button>
+			 </form>
+		   </div>
+			
+		</div>
+		<div data-role="page" id="createacct" style = "text-align: center">
+		   <div id="mainHeading">
+			 <h1>Notice Me!</h1>
+		   </div>
+
+		   <div style ="margin: 2em" >
 		     <div class="form-group" >
 		       <label for="exampleInputEmail1">Email address</label>
 		       <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
@@ -40,7 +63,7 @@
 		       <label for="exampleInputPassword1">Password</label>
 		       <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
 		     </div>
-		     <button type="submit" class="btn btn-primary" onclick="window.location.href = '#home'">Submit</button>
+			 <button type="submit" class="btn btn-secondary" onclick="window.location.href = '#home'"> Create Account</button>
 		   </div>
 
 		</div>
