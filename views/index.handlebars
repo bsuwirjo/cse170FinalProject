@@ -43,11 +43,11 @@
 		       <input type="password" name="password" value="1234" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
 		     </div>
 		     <button type="submit" class="btn btn-primary" onclick="window.location.href = '#home'">Submit</button>
-			 
+
 			 <button type="submit" class="btn btn-secondary" > Create Account</button>
 			 </form>
 		   </div>
-			
+
 		</div> --}}
 		<div data-role="page" id="home">
 			<div data-role="navbar" class="myNav">
@@ -64,8 +64,8 @@
 				  </ul>
 			  </div>
 			<ul class="list-group list-group-flush">
-				
-			
+
+
 			{{#each stocks}}
 			<li class="list-group-item stock">
 			<div class="container" id="home">
@@ -155,6 +155,9 @@
 			   </div>
 		</div>
 
+		<button type="submit" class="btn btn-primary" style = "position:absolute; bottom:2em; background-color:#ff4141; color:white" onclick="window.location.href = '/home#home'">Log Out</button>
+
+
 	</div>
 			<div data-role="page" id="createacct" style = "text-align: center">
 		   <div id="mainHeading">
@@ -170,7 +173,7 @@
 		       <label for="exampleInputPassword1">Password</label>
 		       <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
 		     </div>
-			 <button type="submit" class="btn btn-secondary" onclick="window.location.href = '/home#home'"> Create Account</button>
+			 <button type="submit" class="btn btn-secondary" onclick="window.location.href = '/home#home'">Submit</button>
 		   </div>
 
 		</div>
