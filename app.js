@@ -12,6 +12,7 @@ var fs = require('fs');
 var session = require('express-session');
 // Example route
 // var user = require('./routes/user');
+var fetch = require('node-fetch');
 
 var app = express();
 let loggedIn = false;
@@ -42,15 +43,7 @@ app.use('/loginPage', (req,res) => {res.sendfile('views/login.html')});
 app.post('/login', (req,res) => {
   if (checkLogin(req.body.email, req.body.password)){
     var user = users.filter(e => {return (e.email === req.body.email && e.password === req.body.password)});
-    if (req.session.cookie.stocks){
-
-    user[0].stocks.forEach((e) => {req.session.cookie.stocks.push(e)});
-
-    } else {
-      req.session.cookie.stocks = [];
-    }
-    req.session.cookie.stocks = JSON.stringify(user[0].stocks);
-    console.log(req.session.cookie.stocks);
+    fs.writeFile('stocks.json', JSON.stringify(user[0].stocks), () => {});
     email = req.body.email;
     password = req.body.password;
     loggedIn = true;
@@ -69,9 +62,14 @@ app.get('/', (req, res) => {loggedIn ? res.redirect('/home'): res.redirect('/log
 // Example route
 // app.get('/users', user.list);
 app.get('/home',(req, res) => {
-  console.log(req.session.cookie.stocks);
-  getStockInfo(JSON.parse(req.session.cookie.stocks));
-  res.render('index', {stocks: req.session.cookie.stockInfo});
+  var sinfo;
+  fs.readFile('stocks.json', async (err, data) =>{
+    var stocks = JSON.parse(data);
+    var info = await getStockInfo(stocks);
+    sinfo = JSON.parse(info);
+  })
+  console.log(sinfo);
+  res.render('index', sinfo);
   });
 
 http.createServer(app).listen(app.get('port'), function(){
@@ -80,12 +78,17 @@ http.createServer(app).listen(app.get('port'), function(){
 
 
 app.get('/stocks', (req, res)=>{
-  res.send(JSON.stringify(stocks));
+
 })
 
 app.post('/addStock', (req,res) => {
   var stock = req.body.stock;
-  req.session.cookie.stocks.push(stock);
+  var stocks = [];
+  fs.readFile('stocks.json', (err, data) => {
+    stocks = JSON.parse(data);
+    stocks.push(stock);
+  })
+  fs.write('stocks.json', JSON.stringify(stocks));
   res.redirect('/home');
 });
 function checkLogin(email, password){
@@ -105,32 +108,33 @@ if (!stockNames){
 var stockArray = []
 var reqArr = ["GLOBAL_QUOTE", "MSFT", "1min", "H3FTWBXJYQ1YB9CK"]
 var base = "https://www.alphavantage.co/query?"
-
-
-  var stockDictionary = {};
+var stockDictionary = {};
 for(var i = 0; i < stockNames.length; i++){
     stockDictionary[stockNames[i]] = {};
 }
 
 var request = require('request');
 
-var dataArray = []
-request.get('/external-api', function(req, res){
+var dataArray = [];
 	for(var i = 0; i < stockNames.length; i++)
     {
-        var url = base + "function=" + reqArr[0] + "&symbol=" + stockNames[i] + "&interval=" + reqArr[2] + "&apikey="+reqArr[3]
-		 request(url, function (error, response, body) {
-			  //console.log('error:', error); // Print the error if one occurred and handle it
-			  //console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+        var url = base + "function=" + reqArr[0] + "&symbol=" + stockNames[i] + "&interval=" + reqArr[2] + "&apikey="+reqArr[3];
+        let res = await fetch(url);
+        let resJson = await res.json();
+        let body = JSON.stringify(resJson);
+        console.log(body);
+  
 
               body = body.replace("01. symbol", "symbol");
               body = body.replace("05. price", "price");
               body = body.replace("10. change percent", "changePercent");
 
               var tmp = JSON.parse(body);
-              stockInfo.push(tmp["Global Quote"])
-			  //res.send(body)
-		});
+              console.log(tmp["Global Quote"]);
+              dataArray.push(tmp["Global Quote"])
+
+
     }
-})
+    console.log(dataArray);
+return JSON.stringify(dataArray);
 }
