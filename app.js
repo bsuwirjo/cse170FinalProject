@@ -36,7 +36,7 @@ app.use(express.urlencoded());
 // app.use(app.router);
 app.use(express.static('public'));
 
-app.use(session({secret : 'noticeme' , cookie: {stocks: [], stockInfo: []}}));
+app.use(session({secret : 'noticeme' , cookie: {}, token: ""}));
 app.use('/loginPage', (req,res) => {res.sendfile('views/login.html')});
 
 app.post('/login', (req,res) => {
@@ -49,7 +49,7 @@ app.post('/login', (req,res) => {
     } else {
       req.session.cookie.stocks = [];
     }
-    req.session.cookie.stocks = user[0].stocks;
+    req.session.cookie.stocks = JSON.stringify(user[0].stocks);
     console.log(req.session.cookie.stocks);
     email = req.body.email;
     password = req.body.password;
@@ -70,7 +70,7 @@ app.get('/', (req, res) => {loggedIn ? res.redirect('/home'): res.redirect('/log
 // app.get('/users', user.list);
 app.get('/home',(req, res) => {
   console.log(req.session.cookie.stocks);
-  getStockInfo(req.session.cookie.stocks);
+  getStockInfo(JSON.parse(req.session.cookie.stocks));
   res.render('index', {stocks: req.session.cookie.stockInfo});
   });
 
