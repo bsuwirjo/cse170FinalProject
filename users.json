@@ -2,11 +2,11 @@
     {
         "email" : "agb@alexanderbiz.com",
         "password" : "1234",
-        "stocks" : ["GOOGL", "AAPL"]
+        "stocks" : ["GOOGL", "SNAP"]
     },
     {
         "email" : "bsuwirjo@google.com",
         "password" : "1234",
-        "stocks" : ["GOOGL"]
+        "stocks" : ["GOOGL", "AAPL"]
     }
 ]

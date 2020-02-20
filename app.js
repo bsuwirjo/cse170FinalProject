@@ -37,8 +37,7 @@ app.use(express.urlencoded());
 // app.use(app.router);
 app.use(express.static('public'));
 
-app.use(session({secret : 'noticeme' , cookie: {}, token: ""}));
-app.use('/loginPage', (req,res) => {res.sendfile('views/login.html')});
+app.use('/loginPage', (req,res) => { if(loggedIn)  {res.redirect('/home')} else { res.sendfile ('views/login.html')}});
 
 app.post('/login', (req,res) => {
   if (checkLogin(req.body.email, req.body.password)){
@@ -58,21 +57,25 @@ app.post('/login', (req,res) => {
 // }
 
 // Add routes here
-app.get('/', (req, res) => {loggedIn ? res.redirect('/home'): res.redirect('/loginPage')});
+app.get('/', (req, res) => {res.redirect('/loginPage')});
 // Example route
 // app.get('/users', user.list);
 app.get('/home',(req, res) => {
   var sinfo;
   fs.readFile('stocks.json', async (err, data) =>{
     var stocks = JSON.parse(data);
-    var info = await getStockInfo(stocks);
+    var info = await getStockInfo(stocks).then(res => res);
+    console.log(info);
     sinfo = JSON.parse(info);
+    //console.log(sinfo);
+  var data = {stocks: sinfo};
+  //console.log(data);
+  res.render('index', data);
   })
-  console.log(sinfo);
-  res.render('index', sinfo);
+  
   });
 
-http.createServer(app).listen(app.get('port'), function(){
+   http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
 
@@ -89,11 +92,16 @@ app.post('/addStock', (req,res) => {
     stocks.push(stock);
     fs.writeFile('stocks.json', JSON.stringify(stocks), () => {});
 
+    res.redirect('/home');
   })
 
   
-  res.redirect('/home');
 });
+
+app.get('/addStockPage', (req, res) =>{
+  var data = [];
+  
+})
 
 function checkLogin(email, password){
   if (users.filter((e) => { console.log(e); return (e.email === email && e.password === password); }).length > 0) {
@@ -124,8 +132,8 @@ var dataArray = [];
     {
         var url = base + "function=" + reqArr[0] + "&symbol=" + stockNames[i] + "&interval=" + reqArr[2] + "&apikey="+reqArr[3];
         let res = await fetch(url);
-        let resJson = await res.json();
-        let body = JSON.stringify(resJson);
+        let body = await res.text();
+      
         console.log(body);
   
 
@@ -134,11 +142,11 @@ var dataArray = [];
               body = body.replace("10. change percent", "changePercent");
 
               var tmp = JSON.parse(body);
-              console.log(tmp["Global Quote"]);
+              //console.log(tmp["Global Quote"]);
               dataArray.push(tmp["Global Quote"])
 
 
     }
-    console.log(dataArray);
+    //console.log(dataArray);
 return JSON.stringify(dataArray);
 }
