@@ -87,10 +87,14 @@ app.post('/addStock', (req,res) => {
   fs.readFile('stocks.json', (err, data) => {
     stocks = JSON.parse(data);
     stocks.push(stock);
+    fs.writeFile('stocks.json', JSON.stringify(stocks), () => {});
+
   })
-  fs.write('stocks.json', JSON.stringify(stocks));
+
+  
   res.redirect('/home');
 });
+
 function checkLogin(email, password){
   if (users.filter((e) => { console.log(e); return (e.email === email && e.password === password); }).length > 0) {
     
