@@ -37,16 +37,18 @@ app.use(express.urlencoded());
 // app.use(app.router);
 app.use(express.static('public'));
 
-app.use('/loginPage', (req,res) => { if(loggedIn)  {res.redirect('/home')} else { res.sendfile ('views/login.html')}});
+app.use('/loginPage', (req,res) => { if(loggedIn)  {res.redirect('/home')} else { res.render ('login', {})}});
 
 app.post('/login', (req,res) => {
   if (checkLogin(req.body.email, req.body.password)){
     var user = users.filter(e => {return (e.email === req.body.email && e.password === req.body.password)});
-    fs.writeFile('stocks.json', JSON.stringify(user[0].stocks), () => {});
-    email = req.body.email;
+    fs.writeFile('stocks.json', JSON.stringify(user[0].stocks), () => {
+      email = req.body.email;
     password = req.body.password;
     loggedIn = true;
     res.redirect('/home');
+    });
+    
   } else {
     res.redirect('/loginPage');
   }
@@ -55,6 +57,11 @@ app.post('/login', (req,res) => {
 // if ('development' == app.get('env')) {
 //   app.use(express.errorHandler());
 // }
+app.get('logout',  (req, res) => {
+  loggedIn = false;
+  res.redirect('/loginPage');
+});
+
 
 // Add routes here
 app.get('/', (req, res) => {res.redirect('/loginPage')});
@@ -63,14 +70,19 @@ app.get('/', (req, res) => {res.redirect('/loginPage')});
 app.get('/home',(req, res) => {
   var sinfo;
   fs.readFile('stocks.json', async (err, data) =>{
-    var stocks = JSON.parse(data);
+    var stocks = await JSON.parse(data);
     var info = await getStockInfo(stocks).then(res => res);
     console.log(info);
-    sinfo = JSON.parse(info);
+      sinfo = JSON.parse(info);
     //console.log(sinfo);
-  var data = {stocks: sinfo};
-  //console.log(data);
-  res.render('index', data);
+     var data = {stocks: sinfo};
+     fs.writeFile('currInfo.json', JSON.stringify(data), ()=>{
+       fs.readFile('currInfo.json', (err, data)=>{
+          var sarr = JSON.parse(data);
+          res.render('index', sarr);
+       })
+     })
+  
   })
 
   });
@@ -90,9 +102,11 @@ app.post('/addStock', (req,res) => {
   fs.readFile('stocks.json', (err, data) => {
     stocks = JSON.parse(data);
     stocks.push(stock);
-    fs.writeFile('stocks.json', JSON.stringify(stocks), () => {});
+    fs.writeFile('stocks.json', JSON.stringify(stocks), () => {
 
-    res.redirect('/home');
+      res.redirect('/home');
+    });
+
   })
 
 
