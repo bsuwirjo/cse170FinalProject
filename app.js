@@ -72,7 +72,7 @@ app.get('/home',(req, res) => {
   //console.log(data);
   res.render('index', data);
   })
-  
+
   });
 
    http.createServer(app).listen(app.get('port'), function(){
@@ -95,17 +95,17 @@ app.post('/addStock', (req,res) => {
     res.redirect('/home');
   })
 
-  
+
 });
 
 app.get('/addStockPage', (req, res) =>{
   var data = [];
-  
+
 })
 
 function checkLogin(email, password){
   if (users.filter((e) => { console.log(e); return (e.email === email && e.password === password); }).length > 0) {
-    
+
     return true;
   }
    else {
@@ -133,16 +133,18 @@ var dataArray = [];
         var url = base + "function=" + reqArr[0] + "&symbol=" + stockNames[i] + "&interval=" + reqArr[2] + "&apikey="+reqArr[3];
         let res = await fetch(url);
         let body = await res.text();
-      
-        console.log(body);
-  
+
 
               body = body.replace("01. symbol", "symbol");
               body = body.replace("05. price", "price");
               body = body.replace("10. change percent", "changePercent");
 
               var tmp = JSON.parse(body);
-              //console.log(tmp["Global Quote"]);
+
+              var stockUrl = "https://finance.yahoo.com/quote/" + stockNames[i] + "?p=" + stockNames[i] + "&.tsrc=fin-srch"
+
+              tmp["Global Quote"]["url"] = "<div onclick = \"window.location=\'" + stockUrl + "\';\">"
+              console.log(tmp["Global Quote"]);
               dataArray.push(tmp["Global Quote"])
 
 
