@@ -1,7 +1,7 @@
 
 .stock:hover{
 	background-color: #03adfc;
-	
+
 }
 .row{
     vertical-align: middle;
@@ -30,7 +30,8 @@
 
 .myNav{
 	border-bottom: 1px solid black;
-	margin-bottom: 10px
+	margin-bottom: 10px;
+	padding:5px;
 }
 
 .title{
