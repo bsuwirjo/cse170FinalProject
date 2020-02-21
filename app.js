@@ -83,7 +83,6 @@ app.get('/home', async (req,res) =>{
               try{
                 var response = await fetch(loginPath + "username=" + req.query.email + "&password=" + req.query.password);
                 var json = await response.json();
-                console.log(json);
                 if (json.response === -1){
                   console.log('invalid login');
                   //res.redirect('/login');
@@ -97,7 +96,7 @@ app.get('/home', async (req,res) =>{
                 console.log(e);
               }
                 break;
-    case 'createAcct': console.log(`Making acct ${req.query.email}`);
+    case 'createAcct': 
                         var response = await fetch(fetchpath + "username=" + req.query.email + "&password=" + req.query.password);
                         var json = await response.json();
                         break;
@@ -111,7 +110,6 @@ app.get('/home', async (req,res) =>{
                   response = await fetch(updateStock + "stocks=" + json.Stocks);
                   json = await response.json();
                   data.string = json;
-                  console.log('data string is ' + data.string);
                 } catch(e){
                   console.log(e);
                 }
@@ -121,13 +119,11 @@ app.get('/home', async (req,res) =>{
     user.email = req.query.email;
     user.password = req.query.password;
     user.stocks= JSON.parse(data.string);
-  } else 
-  if (req.query.submit == 'addStock'){
+  } else if (req.query.submit == 'addStock'){
     user.stocks = JSON.parse(data.string);
   }
+  res.render('index', user); 
 
-  console.log(user);
-  res.render('index', {stocks: user.stocks}); 
 })
 
 
