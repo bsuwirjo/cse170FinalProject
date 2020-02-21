@@ -4,7 +4,8 @@
 
 }
 .row{
-    vertical-align: middle;
+	vertical-align: middle;
+	padding-bottom: 10px;
 }
 .float{
 	position:fixed;

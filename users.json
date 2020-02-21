@@ -2,7 +2,7 @@
     {
         "email" : "agb@alexanderbiz.com",
         "password" : "1234",
-        "stocks" : ["GOOGL"]
+        "stocks" : [{"symbol" : "GOOGL", "price": "100", "changePercent" : "0.5%"}, {"symbol": "AAPL"}]
     },
     {
         "email" : "bsuwirjo@google.com",

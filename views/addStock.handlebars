@@ -37,11 +37,11 @@
 			</div>
 
 			<div style = "margin:2em">
-				<form action="/addStock" method="POST">
+				<form action="/home" method="GET">
 				<div class="form-group" >
 				  <label for="exampleInputEmail1">Enter Stock</label>
-				  <input  class="form-control" name="stock" value="" aria-describedby="emailHelp" placeholder="Stock Name">
-				  <button type="submit" class="btn btn-primary" onclick="window.location.href = '/home'">Submit</button>
+				  <input  class="form-control" name="stock" value="" aria-describedby="emailHelp" placeholder="Stock Name" required>
+				  <button type="submit" class="btn btn-primary" value="addStock" name="source" onclick="window.location.href = '/home'">Submit</button>
 			   </div>
 				</form>
 			   <div style = "margin-top:2em"> <h4>Your stocks <h4></div>
