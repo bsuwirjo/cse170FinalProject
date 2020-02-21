@@ -100,6 +100,11 @@ app.get('/home', async (req,res) =>{
                         var response = await fetch(fetchpath + "username=" + req.query.email + "&password=" + req.query.password);
                         var json = await response.json();
                         break;
+    case 'settings': console.log(req.query);
+                    console.log(user);
+                    user.up = req.query.percentUp;
+                    user.down = req.query.percentDown;
+                    break;
     case 'addStock': 
                 try {
                   console.log(addStock+ "userName=" + user.email + "&password=" + user.password + "&stock=" +req.query.stock);
@@ -133,7 +138,7 @@ app.get('/addStock',  (req,res) => {
 });
 
 app.get('/settings', (req,res) =>{
-  res.render('settings');
+  res.render('settings', user);
 })
 
 app.get('/createAcct', (req,res)=>{
