@@ -71,6 +71,33 @@ app.use('login', (req,res) => {
 app.get('/', (req, res) => {res.redirect('/login')});
 // Example route
 // app.get('/users', user.list);
+<<<<<<< HEAD
+=======
+app.get('/home',(req, res) => {
+  var sinfo;
+  fs.readFile('stocks.json', async (err, data) =>{
+    var stocks = await JSON.parse(data);
+    var info = await getStockInfo(stocks).then(res => res);
+    console.log(info);
+      sinfo = JSON.parse(info);
+    //console.log(sinfo);
+     var data = {stocks: sinfo};
+     fs.writeFile('currInfo.json', JSON.stringify(data), ()=>{
+       fs.readFile('currInfo.json', (err, data)=>{
+          var sarr = JSON.parse(data);
+          res.render('index', sarr);
+       })
+     })
+  
+  })
+
+  });
+
+   http.createServer(app).listen(app.get('port'), function(){
+  console.log('Express server listening on port ' + app.get('port'));
+});
+
+>>>>>>> c81f50463de705ad8b5153a88b9a557fd570955f
 
 
 app.get('/home', async (req,res) =>{
@@ -110,6 +137,7 @@ app.get('/home', async (req,res) =>{
 })
 
 
+<<<<<<< HEAD
 app.get('/addStock', (req,res) => {
   res.render('addStock', {});
 });
@@ -122,3 +150,64 @@ app.get('/createAcct', (req,res)=>{
   res.render('createAccount', {});
 })
 
+=======
+  })
+
+
+});
+
+app.get('/addStockPage', (req, res) =>{
+  var data = [];
+
+})
+
+function checkLogin(email, password){
+  if (users.filter((e) => { console.log(e); return (e.email === email && e.password === password); }).length > 0) {
+
+    return true;
+  }
+   else {
+     return false;
+   }
+}
+
+async function getStockInfo(stockNames){
+if (!stockNames){
+  return;
+}
+var stockArray = []
+var reqArr = ["GLOBAL_QUOTE", "MSFT", "1min", "H3FTWBXJYQ1YB9CK"]
+var base = "https://www.alphavantage.co/query?"
+var stockDictionary = {};
+for(var i = 0; i < stockNames.length; i++){
+    stockDictionary[stockNames[i]] = {};
+}
+
+var request = require('request');
+
+var dataArray = [];
+	for(var i = 0; i < stockNames.length; i++)
+    {
+        var url = base + "function=" + reqArr[0] + "&symbol=" + stockNames[i] + "&interval=" + reqArr[2] + "&apikey="+reqArr[3];
+        let res = await fetch(url);
+        let body = await res.text();
+
+
+              body = body.replace("01. symbol", "symbol");
+              body = body.replace("05. price", "price");
+              body = body.replace("10. change percent", "changePercent");
+
+              var tmp = JSON.parse(body);
+
+              var stockUrl = "https://finance.yahoo.com/quote/" + stockNames[i] + "?p=" + stockNames[i] + "&.tsrc=fin-srch"
+
+              tmp["Global Quote"]["url"] = "<div onclick = \"window.location=\'" + stockUrl + "\';\">"
+              console.log(tmp["Global Quote"]);
+              dataArray.push(tmp["Global Quote"])
+
+
+    }
+    //console.log(dataArray);
+return JSON.stringify(dataArray);
+}
+>>>>>>> c81f50463de705ad8b5153a88b9a557fd570955f

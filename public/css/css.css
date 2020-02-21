@@ -39,3 +39,9 @@
 	color: #03adfc;
 	font-size: 30px;
 }
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+  cursor: inherit;
+}
