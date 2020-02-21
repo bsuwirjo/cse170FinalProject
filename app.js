@@ -6,6 +6,7 @@
 const fetchpath = 'http://bsuwirjo.com/cs170Project/createUser.php?';
 const loginPath = 'http://bsuwirjo.com/cs170Project/login.php?';
 const updateStock = 'http://bsuwirjo.com/cs170Project/updateStocks.php?';
+const addStock = 'http://bsuwirjo.com/cs170Project/addStock.php?';
 
 var express = require('express');
 var http = require('http');
@@ -20,7 +21,7 @@ var fetch = require('node-fetch');
 
 
 var app = express();
-let user = {email: "test", password: "test"};
+let user = {email: "test", password: "test", up: 0, down:0, stocks: []};
 let loggedIn = false;
 // all environments
 
@@ -71,42 +72,15 @@ app.use('login', (req,res) => {
 app.get('/', (req, res) => {res.redirect('/login')});
 // Example route
 // app.get('/users', user.list);
-<<<<<<< HEAD
-=======
-app.get('/home',(req, res) => {
-  var sinfo;
-  fs.readFile('stocks.json', async (err, data) =>{
-    var stocks = await JSON.parse(data);
-    var info = await getStockInfo(stocks).then(res => res);
-    console.log(info);
-      sinfo = JSON.parse(info);
-    //console.log(sinfo);
-     var data = {stocks: sinfo};
-     fs.writeFile('currInfo.json', JSON.stringify(data), ()=>{
-       fs.readFile('currInfo.json', (err, data)=>{
-          var sarr = JSON.parse(data);
-          res.render('index', sarr);
-       })
-     })
-  
-  })
-
-  });
-
-   http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
-});
-
->>>>>>> c81f50463de705ad8b5153a88b9a557fd570955f
 
 
 app.get('/home', async (req,res) =>{
-    user.email = req.query.email;
-    user.password = req.query.password;
     loggedIn = true; 
   let data = {stocks: [{symbol:"", price: 0, changesPercentage: 0}]};
+  console.log(req.query.submit);
   switch(req.query.submit){
     case 'login': 
+              try{
                 var response = await fetch(loginPath + "username=" + req.query.email + "&password=" + req.query.password);
                 var json = await response.json();
                 console.log(json);
@@ -115,99 +89,57 @@ app.get('/home', async (req,res) =>{
                   //res.redirect('/login');
                   //return;
                 }
-                user.email = req.query.email;
-                user.password = req.query.password;
-                loggedIn = true; 
-                console.log(json.Stocks);
                 response = await fetch(updateStock + "stocks=" + json.Stocks);
-                console.log(response);
                 json = await response.json();
                 data.string = json;
+              }
+              catch(e){
+                console.log(e);
+              }
                 break;
     case 'createAcct': console.log(`Making acct ${req.query.email}`);
                         var response = await fetch(fetchpath + "username=" + req.query.email + "&password=" + req.query.password);
                         var json = await response.json();
-                        console.log(json);
-                        return;
                         break;
+    case 'addStock': 
+                try {
+                  console.log(addStock+ "userName=" + user.email + "&password=" + user.password + "&stock=" +req.query.stock);
+                  var response = await fetch(addStock+ "userName=" + user.email + "&password=" + user.password + "&stock=" +req.query.stock);
+                  response = await fetch(loginPath + "username=" + user.email + "&password=" + user.password);
+                  var json = await response.json();
+                  console.log(json.Stocks);
+                  response = await fetch(updateStock + "stocks=" + json.Stocks);
+                  json = await response.json();
+                  data.string = json;
+                  console.log('data string is ' + data.string);
+                } catch(e){
+                  console.log(e);
+                }
+                  break;
   }
-  const renderData = JSON.parse(data.string);
-  console.log(renderData);
-  res.render('index', {}); 
+  if (req.query.submit == 'login'){
+    user.email = req.query.email;
+    user.password = req.query.password;
+    user.stocks= JSON.parse(data.string);
+  } else 
+  if (req.query.submit == 'addStock'){
+    user.stocks = JSON.parse(data.string);
+  }
+
+  console.log(user);
+  res.render('index', {stocks: user.stocks}); 
 })
 
 
-<<<<<<< HEAD
 app.get('/addStock', (req,res) => {
   res.render('addStock', {});
 });
 
 app.get('/settings', (req,res) =>{
-  res.render('settings', {});
+  res.render('settings');
 })
 
 app.get('/createAcct', (req,res)=>{
   res.render('createAccount', {});
 })
 
-=======
-  })
-
-
-});
-
-app.get('/addStockPage', (req, res) =>{
-  var data = [];
-
-})
-
-function checkLogin(email, password){
-  if (users.filter((e) => { console.log(e); return (e.email === email && e.password === password); }).length > 0) {
-
-    return true;
-  }
-   else {
-     return false;
-   }
-}
-
-async function getStockInfo(stockNames){
-if (!stockNames){
-  return;
-}
-var stockArray = []
-var reqArr = ["GLOBAL_QUOTE", "MSFT", "1min", "H3FTWBXJYQ1YB9CK"]
-var base = "https://www.alphavantage.co/query?"
-var stockDictionary = {};
-for(var i = 0; i < stockNames.length; i++){
-    stockDictionary[stockNames[i]] = {};
-}
-
-var request = require('request');
-
-var dataArray = [];
-	for(var i = 0; i < stockNames.length; i++)
-    {
-        var url = base + "function=" + reqArr[0] + "&symbol=" + stockNames[i] + "&interval=" + reqArr[2] + "&apikey="+reqArr[3];
-        let res = await fetch(url);
-        let body = await res.text();
-
-
-              body = body.replace("01. symbol", "symbol");
-              body = body.replace("05. price", "price");
-              body = body.replace("10. change percent", "changePercent");
-
-              var tmp = JSON.parse(body);
-
-              var stockUrl = "https://finance.yahoo.com/quote/" + stockNames[i] + "?p=" + stockNames[i] + "&.tsrc=fin-srch"
-
-              tmp["Global Quote"]["url"] = "<div onclick = \"window.location=\'" + stockUrl + "\';\">"
-              console.log(tmp["Global Quote"]);
-              dataArray.push(tmp["Global Quote"])
-
-
-    }
-    //console.log(dataArray);
-return JSON.stringify(dataArray);
-}
->>>>>>> c81f50463de705ad8b5153a88b9a557fd570955f
