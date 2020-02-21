@@ -127,8 +127,9 @@ app.get('/home', async (req,res) =>{
 })
 
 
-app.get('/addStock', (req,res) => {
-  res.render('addStock', {});
+app.get('/addStock',  (req,res) => {
+   
+  res.render('addStock', user);
 });
 
 app.get('/settings', (req,res) =>{
