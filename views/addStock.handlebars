@@ -37,11 +37,11 @@
 			</div>
 
 			<div style = "margin:2em">
-				<form action="/home" method="GET">
+				<form action="/home" method="GET" >
 				<div class="form-group" >
 				  <label for="exampleInputEmail1">Enter Stock</label>
 				  <input  class="form-control" name="stock" value="" aria-describedby="emailHelp" placeholder="Stock Name" required>
-				  <button type="submit" class="btn btn-primary" value="addStock" name="submit" onclick="window.location.href = '/home'">Submit</button>
+				  <button type="submit" class="btn btn-primary" value="addStock" name="submit" onclick="window.location.href.replace('/home'); window.location.refresh(false)">Submit</button>
 			   </div>
 				</form>
 			   <div style = "margin-top:2em"> <h4>Your stocks <h4></div>
@@ -57,4 +57,10 @@
 				</ul>
 			</div>
 		</div>
+		<script>
+			function refresh(){
+				window.location.reload(false);
+				window.location.href = '/home';
+			}
+		</script>
 </body>

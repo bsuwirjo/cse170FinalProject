@@ -127,13 +127,17 @@ app.get('/home', async (req,res) =>{
   } else if (req.query.submit == 'addStock'){
     user.stocks = JSON.parse(data.string);
   }
-  res.render('index', user); 
+  console.log(user);
+  // Add ajax
+  //
+  res.render('index', user, (err, html)  =>{
+    res.send(html);
+  }); 
 
 })
 
 
 app.get('/addStock',  (req,res) => {
-   
   res.render('addStock', user);
 });
 
@@ -143,5 +147,9 @@ app.get('/settings', (req,res) =>{
 
 app.get('/createAcct', (req,res)=>{
   res.render('createAccount', {});
+})
+
+app.get('/settingsAlt', (req, res) =>{
+  res.render('settingsAlt', user);
 })
 
