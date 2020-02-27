@@ -44,6 +44,8 @@ app.use(express.urlencoded());
 // app.use(app.router);
 app.use(express.static('public'));
 
+Handlebars.registerPartial("navbar", "{{navbar}}");
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
@@ -75,11 +77,11 @@ app.get('/', (req, res) => {res.redirect('/login')});
 
 
 app.get('/home', async (req,res) =>{
-    loggedIn = true; 
+    loggedIn = true;
   let data = {stocks: [{symbol:"", price: 0, changesPercentage: 0}]};
   console.log(req.query.submit);
   switch(req.query.submit){
-    case 'login': 
+    case 'login':
               try{
                 var response = await fetch(loginPath + "username=" + req.query.email + "&password=" + req.query.password);
                 var json = await response.json();
@@ -96,7 +98,7 @@ app.get('/home', async (req,res) =>{
                 console.log(e);
               }
                 break;
-    case 'createAcct': 
+    case 'createAcct':
                         var response = await fetch(fetchpath + "username=" + req.query.email + "&password=" + req.query.password);
                         var json = await response.json();
                         break;
@@ -105,7 +107,7 @@ app.get('/home', async (req,res) =>{
                     user.up = req.query.percentUp;
                     user.down = req.query.percentDown;
                     break;
-    case 'addStock': 
+    case 'addStock':
                 try {
                   console.log(addStock+ "userName=" + user.email + "&password=" + user.password + "&stock=" +req.query.stock);
                   var response = await fetch(addStock+ "userName=" + user.email + "&password=" + user.password + "&stock=" +req.query.stock);
@@ -132,7 +134,7 @@ app.get('/home', async (req,res) =>{
   //
   res.render('index', user, (err, html)  =>{
     res.send(html);
-  }); 
+  });
 
 })
 
@@ -152,4 +154,3 @@ app.get('/createAcct', (req,res)=>{
 app.get('/settingsAlt', (req, res) =>{
   res.render('settingsAlt', user);
 })
-

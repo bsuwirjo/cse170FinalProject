@@ -30,10 +30,7 @@
 		<div >
 			<div data-role="navbar" class="myNav">
 				  <ul>
-					  <li><span class="navbar-brand title">Notice Me</span></li>
-					  <li></li>
-					  <li><span class="navbar-brand"> Home </span></li>
-					  <li></li>
+					  {{> navbar}}
 					  <li>
 						  <form action="/settings" method="GET">
 						  <button type="button" class="btn btn-default btn-lg navbutton" onclick="window.location.href = '/settings'" >
@@ -69,12 +66,12 @@
 			<a href="/addStock" class="float addStockBtn">
 			    <img class = "my-float" src="open-iconic/svg/plus.svg" alt="icon name">
 			</a>
-			
+
 		</div>
 
 
 
-	
+
 </body>
 <script>
 

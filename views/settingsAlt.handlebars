@@ -24,12 +24,7 @@
      <div data-role="page" id="settings">
 			<div data-role="navbar" class="myNav">
   				<ul>
-  					<li><span class="navbar-brand title">Notice Me</span></li>
-  					<li></li>
-  					<li><span class="navbar-brand"> Settings </span></li>
-  					<li>
-
-                      </li>
+					{{> navbar}}
   					<li>
   					  <button type="button" onclick="window.location.href = '/home'">
   		  			    <span> <img src="open-iconic/svg/arrow-left.svg" alt="icon name" style ="height:1em"> </span>
@@ -56,7 +51,7 @@
 						</div>
 
                     <label>Current Percent Down: {{down}}</label>
-				  <label>Percent Decrease Notification</label>     
+				  <label>Percent Decrease Notification</label>
 				  <div class="form-group">
 						<select id="inputState" name="percentDown" class="form-control">
 							<option selected>Choose...</option>
