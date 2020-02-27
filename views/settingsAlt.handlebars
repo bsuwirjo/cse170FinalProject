@@ -7,6 +7,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	<script src="js/login.js"></script>
+	<script src="js/addOptions.js"></script>
 	<!--<script src="js/bootstrap.js"></script>-->
 
 	<link href="css/css.css" rel="stylesheet">
@@ -45,30 +46,21 @@
                     <label>Current Percent Increase: {{up}}</label>
 				  <label>Percent Increase Notification</label>
 				     <div class="form-group">
-						<select id="inputState" name="percentUp" class="form-control">
+						<select id="UpSelector" name="percentUp" class="form-control">
 							<option selected>Choose...</option>
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-							<option>4</option>
-							<option>5</option>
 						</select>
 						</div>
 
                     <label>Current Percent Down: {{down}}</label>
 				  <label>Percent Decrease Notification</label>     
 				  <div class="form-group">
-						<select id="inputState" name="percentDown" class="form-control">
+						<select id="DownSelector" name="percentDown" class="form-control">
 							<option selected>Choose...</option>
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-							<option>4</option>
-							<option>5</option>
 						</select>
 						</div>
 
 			   </div>
+				  <button type="submit" class="btn btn-primary" onclick="window.location.href = '/home'" name="submit" value="settings">Submit</button>
                </form>
 		    </div>
 		<form action="/logout" method="GET">
