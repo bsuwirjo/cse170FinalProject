@@ -44,10 +44,10 @@ app.use(express.urlencoded());
 // app.use(app.router);
 app.use(express.static('public'));
 
-Handlebars.registerPartial("navbar", "{{navbar}}");
+//HandlebarsReg.registerPartial("navbar", "{{navbar}}");
 
 http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+  //console.log('Express server listening on port ' + app.get('port'));
 });
 
 
@@ -79,14 +79,14 @@ app.get('/', (req, res) => {res.redirect('/login')});
 app.get('/home', async (req,res) =>{
     loggedIn = true;
   let data = {stocks: [{symbol:"", price: 0, changesPercentage: 0}]};
-  console.log(req.query.submit);
+  //console.log(req.query.submit);
   switch(req.query.submit){
     case 'login':
               try{
                 var response = await fetch(loginPath + "username=" + req.query.email + "&password=" + req.query.password);
                 var json = await response.json();
                 if (json.response === -1){
-                  console.log('invalid login');
+                  //console.log('invalid login');
                   //res.redirect('/login');
                   //return;
                 }
@@ -95,30 +95,30 @@ app.get('/home', async (req,res) =>{
                 data.string = json;
               }
               catch(e){
-                console.log(e);
+                //console.log(e);
               }
                 break;
     case 'createAcct':
                         var response = await fetch(fetchpath + "username=" + req.query.email + "&password=" + req.query.password);
                         var json = await response.json();
                         break;
-    case 'settings': console.log(req.query);
-                    console.log(user);
+    case 'settings': //console.log(req.query);
+                    //console.log(user);
                     user.up = req.query.percentUp;
                     user.down = req.query.percentDown;
                     break;
     case 'addStock':
                 try {
-                  console.log(addStock+ "userName=" + user.email + "&password=" + user.password + "&stock=" +req.query.stock);
+                  //console.log(addStock+ "userName=" + user.email + "&password=" + user.password + "&stock=" +req.query.stock);
                   var response = await fetch(addStock+ "userName=" + user.email + "&password=" + user.password + "&stock=" +req.query.stock);
                   response = await fetch(loginPath + "username=" + user.email + "&password=" + user.password);
                   var json = await response.json();
-                  console.log(json.Stocks);
+                  //console.log(json.Stocks);
                   response = await fetch(updateStock + "stocks=" + json.Stocks);
                   json = await response.json();
                   data.string = json;
                 } catch(e){
-                  console.log(e);
+                  //console.log(e);
                 }
                   break;
   }
@@ -129,7 +129,7 @@ app.get('/home', async (req,res) =>{
   } else if (req.query.submit == 'addStock'){
     user.stocks = JSON.parse(data.string);
   }
-  console.log(user);
+  //console.log(user);
   // Add ajax
   //
   res.render('index', user, (err, html)  =>{
