@@ -19,29 +19,33 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+	<!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+	<!-- Compiled and minified JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
 
-
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 </head>
 
-<body>
-	<div id="main">
-		<div >
-			<div data-role="navbar" class="myNav">
-				  <ul>
-					  {{> navbar}}
-					  <li>
-						  <form action="/settings" method="GET">
-						  <button type="button" class="btn btn-default btn-lg navbutton" onclick="window.location.href = '/settings'" >
+<body style = text-shadow: 0px 0px 0px #000>
+	<div id="main" data-role="none">
+		<nav>
+    		<div class="nav-wrapper">
+				  <div class="brand-logo">Notice Me</div>
+					  <ul id="nav-mobile" class="right">
+						  <li>
+						  <!--<button type="button" class="btn btn-default btn-lg navbutton" onclick="window.location.href = '/settings'" >
 							  <img src="open-iconic/svg/cog.svg" alt="icon name" style ="height:1em">
-						  </button>
-						  </form>
-					  </li>
+						  </button>-->
+						  	<div id="settings" onclick="window.location.href = '/settings'">  <a class="btn-flat"><i class="large material-icons">settings</i></a></div>
+						  <li>
+					  </ul>
 				  </ul>
 			  </div>
 			<ul class="list-group list-group-flush">
-
 
 			{{#each stocks}}
 			<li class="list-group-item stock">
@@ -63,10 +67,16 @@
 			</li>
 			{{/each}}
 			</ul>
+
+			<!--
 			<a href="/addStock" class="float addStockBtn">
 			    <img class = "my-float" src="open-iconic/svg/plus.svg" alt="icon name">
-			</a>
-
+			</a>-->
+			<div class="fixed-action-btn">
+			  <a href="/addStock" class="btn-floating btn-large red">
+				<i class="large material-icons">add</i>
+			  </a>
+		  </div>
 		</div>
 
 
