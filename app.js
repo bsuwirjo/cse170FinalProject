@@ -137,7 +137,6 @@ app.get('/home', async (req,res) =>{
 })
 
 app.post('/addNewStock', (req, res) => {
-  console.log(req.body);
   user.stocks.push({symbol: req.body.symbol});
   res.send(req.body.symbol);
 });
@@ -146,6 +145,12 @@ app.get('/addStock',  (req,res) => {
   res.render('addStock', user);
 });
 
+app.post('/changePercents', (req, res) =>{
+  console.log('changing pcts');
+  user.up = req.body.upPercent;
+  user.down = req.body.downPercent;
+  res.send('Changed percent!');
+})
 app.get('/settings', (req,res) =>{
   res.render('settings', user);
 })

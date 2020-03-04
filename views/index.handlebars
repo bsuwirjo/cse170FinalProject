@@ -19,36 +19,52 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
-<script type="text/javascript">
-	$(document).ready(function(){
-		$('.addStockBtn').click(function(){
-			$.get('addStock');
-			window.location.href="/addStock";
-		})
-	})
-</script>
+	<!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+	<!-- Compiled and minified JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
 
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 </head>
 
-<body>
-	<div id="main">
-		<div >
-			<div data-role="navbar" class="myNav">
-				  <ul>
-					  {{> navbar}}
-					  <li>
-						  <form action="/settings" method="GET">
-						  <button type="button" class="btn btn-default btn-lg navbutton" onclick="window.location.href = '/settings'" >
+<body style = "text-shadow: 0px 0px 0px #000">
+	<div id="main" data-role="none">
+		<nav>
+    		<div class="nav-wrapper">
+				<ul id="nav-mobile" class="left">
+					 <li>
+						  	<div id="refresh">
+								  <a class="btn-flat"> 
+									  <i class="large material-icons">refresh</i>
+								  </a>
+							</div>
+					 </li>
+				</ul>
+				</ul>
+				<ul id="nav-mobile" class="center">
+					<li>
+				  		<div class="brand-logo">Notice Me</div>
+					</li>
+				</ul>
+					  <ul id="nav-mobile" class="right">
+						 
+						  <li>
+						  <!--<button type="button" class="btn btn-default btn-lg navbutton" onclick="window.location.href = '/settings'" >
 							  <img src="open-iconic/svg/cog.svg" alt="icon name" style ="height:1em">
-						  </button>
-						  </form>
-					  </li>
+						  </button>-->
+						  	<div id="settings" onclick="window.location.href = '/settings'"> 
+							   <a class="btn-flat">
+								   <i class="large material-icons">settings</i>
+								</a>
+							</div>
+						  <li>
+					  </ul>
 				  </ul>
 			  </div>
 			<ul class="list-group list-group-flush">
-
 
 			{{#each stocks}}
 			<li class="list-group-item stock">
@@ -70,15 +86,27 @@
 			</li>
 			{{/each}}
 			</ul>
-			<a class="float addStockBtn">
-			    <img class = "my-float" src="open-iconic/svg/plus.svg" alt="icon name">
-			</a>
 
+			<!--
+			<a href="/addStock" class="float addStockBtn">
+			    <img class = "my-float" src="open-iconic/svg/plus.svg" alt="icon name">
+			</a>-->
+			<div class="fixed-action-btn">
+			  <a href='/addStock' id="aStockBtn" class="btn-floating btn-large red">
+				<i class="large material-icons">add</i>
+			  </a>
+		  </div>
 		</div>
 
 
 
 
 </body>
-
+<script>
+	$('#aStockBtn').click(function(e){
+		e.preventDefault();
+		$.get('addStock');
+		window.location.href='/addStock';
+	})
+</script>
 </html>

@@ -16,7 +16,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
 
-	<script src="js/NoticeMe.js"></script>
+	<script src="js/addStockUtil.js"></script>
 
 <head>
 
@@ -35,7 +35,7 @@
 			</div>
 
 			<div style = "margin:2em">
-				<form id="addStockForm">
+				<form id="addStockForm"	>
 				<div class="form-group" >
 				  <label for="exampleInputEmail1">Enter Stock</label>
 				  <input  class="form-control" id="stockName" name="stock" value="" aria-describedby="emailHelp" placeholder="Stock Name" required>
@@ -56,20 +56,6 @@
 			</div>
 		</div>
 		<script>
-
-
-$(document).ready(function(){
-  initButton();
-})
-
-function initButton(){
-    $('#addStockForm').submit(function (e) {
-        e.preventDefault();
-        console.log('adding listener');
-        var stockName = $('#stockName').val();
-        $.post('addNewStock', {symbol: stockName}, () => {});
-    }) 
-}
 
 		</script>
 </body>
