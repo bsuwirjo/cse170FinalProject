@@ -107,7 +107,7 @@ app.get('/home', async (req,res) =>{
                     user.up = req.query.percentUp;
                     user.down = req.query.percentDown;
                     break;
-    case 'addStock':
+    case '!addStock':
                 try {
                   //console.log(addStock+ "userName=" + user.email + "&password=" + user.password + "&stock=" +req.query.stock);
                   var response = await fetch(addStock+ "userName=" + user.email + "&password=" + user.password + "&stock=" +req.query.stock);
@@ -127,17 +127,20 @@ app.get('/home', async (req,res) =>{
     user.password = req.query.password;
     user.stocks= JSON.parse(data.string);
   } else if (req.query.submit == 'addStock'){
-    user.stocks = JSON.parse(data.string);
+    //user.stocks = JSON.parse(data.string);
   }
   //console.log(user);
   // Add ajax
   //
-  res.render('index', user, (err, html)  =>{
-    res.send(html);
-  });
+  res.render('index', user);
 
 })
 
+app.post('/addNewStock', (req, res) => {
+  console.log(req.body);
+  user.stocks.push({symbol: req.body.symbol});
+  res.send(req.body.symbol);
+});
 
 app.get('/addStock',  (req,res) => {
   res.render('addStock', user);
