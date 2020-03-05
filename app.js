@@ -136,9 +136,22 @@ app.get('/home', async (req,res) =>{
 
 })
 
-app.post('/addNewStock', (req, res) => {
-  user.stocks.push({symbol: req.body.symbol});
-  res.send(req.body.symbol);
+app.post('/addNewStock', async (req, res) => {
+  try {
+  var response = await fetch(updateStock+  "&stocks=" +req.body.symbol);
+  var json = await response.json();
+  var nStock = JSON.parse(json);
+  if ( json.length != 0 && user.stocks.filter((v) => {return v.symbol == req.body.symbol}).length == 0){
+    var resp2 = await fetch(addStock+ "userName=" + user.email + "&password=" + user.password + "&stock=" +req.body.symbol);
+    user.stocks.push({symbol: nStock[0].symbol, price: nStock[0].price, changesPercentage: nStock[0].changesPercentage});
+    res.send("Success");
+  } else {
+    res.send("Error");
+  }
+  } catch (e) {
+    res.send("Error");
+  }
+  
 });
 
 app.get('/addStock',  (req,res) => {

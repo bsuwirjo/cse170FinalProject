@@ -16,6 +16,7 @@ function initSettings(){
 }
 
 function changePcts(){
+    ga('send', 'event', 'updates', 'submit');
    var upPct = $('upPercent').val();
    var dwnPct = $('downPercent').val();
     $.post('changePercents', {upPercent : upPct, downPercent: dwnPct}, (res) => {
