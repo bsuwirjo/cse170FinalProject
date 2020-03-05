@@ -38,6 +38,14 @@
 		ga('send', 'pageview');
 	</script>
 
+	<script>
+		$(document).ready(function(){
+			$('#settingsBtn').click(function(){
+				$.get('settings');
+			})
+		})
+	</script>
+
 </head>
 
 <body style = "text-shadow: 0px 0px 0px #000">
@@ -46,20 +54,7 @@
     		<div class="nav-wrapper">
 
 				  <div class="brand-logo left" style = "margin-left:1em">Notice Me</div>
-				<ul id="nav-mobile" class="left">
-					 <li>
-						  	<div id="refresh">
-								  <a class="btn-flat"> 
-									  <i class="large material-icons">refresh</i>
-								  </a>
-							</div>
-					 </li>
-				</ul>
-				</ul>
-				<ul id="nav-mobile" class="center">
-					<li>
-				  		<div class="brand-logo">Notice Me</div>
-					</li>
+
 				</ul>
 					  <ul id="nav-mobile" class="right">
 						 
@@ -67,7 +62,7 @@
 						  <!--<button type="button" class="btn btn-default btn-lg navbutton" onclick="window.location.href = '/settings'" >
 							  <img src="open-iconic/svg/cog.svg" alt="icon name" style ="height:1em">
 						  </button>-->
-						  	<div  onclick="window.location.href = '/settings'">  <a class="btn-flat buttonClass"><i class="large material-icons">settings</i></a></div>
+						  	<div id="settingsBtn" onclick="window.location.href = '/settings'">  <a class="btn-flat buttonClass"><i class="large material-icons">settings</i></a></div>
 						  <li>
 					  </ul>
 				  </ul>

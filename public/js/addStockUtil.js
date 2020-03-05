@@ -14,10 +14,14 @@ function initButton(){
         </li>`)
       
         $.post('addNewStock', {symbol: stockName}, (e, res) =>{
-            console.log(res);
         });
-        $.get('addStock');
-        window.location.href = ('addStock');
+        
+        $('#stockList').append(`<li class="list-group-item stock">
+        <div class="stock">
+             ${stockName}
+        </div>
+        </li>`)
+        $('#stockName').val('');
         // Add something to check response, if not valid, alert the user to try again otherwise say it was successful
     }) 
 }
