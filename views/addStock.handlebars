@@ -16,22 +16,30 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+	<!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
+	<!-- Compiled and minified JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <head>
 
 </head>
 <body>
     <div data-role="page" id="addStock">
-		  <div data-role="navbar" class="myNav">
-				<ul>
-					{{> navbar}}
-					<li>
-					  <button type="button" onclick="window.location.href = '/home'">
-		  			    <span> <img src="open-iconic/svg/arrow-left.svg" alt="icon name" style ="height:1em"> </span>
-		  			  </button>
-					</li>
-				</ul>
-			</div>
+			<nav>
+				<div class="nav-wrapper">
+					  <div class="brand-logo left" style = "margin-left:1em">Notice Me</div>
+						  <ul id="nav-mobile" class="right">
+							  <li>
+							  <!--<button type="button" class="btn btn-default btn-lg navbutton" onclick="window.location.href = '/settings'" >
+								  <img src="open-iconic/svg/cog.svg" alt="icon name" style ="height:1em">
+							  </button>-->
+								<div onclick="window.location.href = '/home'">  <a class="btn-flat buttonClass"><i class="large material-icons">arrow_back</i></a></div>
+							  <li>
+						  </ul>
+					  </ul>
+				  </div>
+			</nav>
 
 			<div style = "margin:2em">
 				<form action="/home" method="GET" >
