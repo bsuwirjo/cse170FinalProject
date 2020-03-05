@@ -7,7 +7,6 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	<script src="js/login.js"></script>
-	<!--<script src="js/bootstrap.js"></script>-->
 
 	<link href="css/css.css" rel="stylesheet">
 
@@ -19,8 +18,13 @@
 	<!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
+<<<<<<< HEAD
 	<!-- Compiled and minified JavaScript -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+=======
+	<script src="js/addStockUtil.js"></script>
+
+>>>>>>> 6ca25440d7e34d394e4de0c6b6c43de0b3f90a66
 <head>
 
 </head>
@@ -42,11 +46,11 @@
 			</nav>
 
 			<div style = "margin:2em">
-				<form action="/home" method="GET" >
+				<form id="addStockForm"	>
 				<div class="form-group" >
 				  <label for="exampleInputEmail1">Enter Stock</label>
-				  <input  class="form-control" name="stock" value="" aria-describedby="emailHelp" placeholder="Stock Name" required>
-				  <button type="submit" class="btn btn-primary" value="addStock" name="submit" onclick="window.location.href.replace('/home'); window.location.refresh(false)">Submit</button>
+				  <input  class="form-control" id="stockName" name="stock" value="" aria-describedby="emailHelp" placeholder="Stock Name" required>
+				  <button type="submit" class="btn btn-primary" value="addStock" name="submit" >Submit</button>
 			   </div>
 				</form>
 			   <div style = "margin-top:2em"> <h4>Your stocks <h4></div>
@@ -63,9 +67,6 @@
 			</div>
 		</div>
 		<script>
-			function refresh(){
-				window.location.reload(false);
-				window.location.href = '/home';
-			}
+
 		</script>
 </body>

@@ -9,7 +9,7 @@
 	<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-	<script src="js/NoticeMe.js"></script>
+
 	<!--<script src="js/bootstrap.js"></script>-->
 
 	<link href="css/css.css" rel="stylesheet">
@@ -27,20 +27,56 @@
 
 
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-158823032-2', 'auto');
+		ga('send', 'pageview');
+	</script>
 
 </head>
 
-<body style = text-shadow: 0px 0px 0px #000>
+<body style = "text-shadow: 0px 0px 0px #000">
 	<div id="main" data-role="none">
 		<nav>
     		<div class="nav-wrapper">
+<<<<<<< HEAD
 				  <div class="brand-logo left" style = "margin-left:1em">Notice Me</div>
+=======
+				<ul id="nav-mobile" class="left">
+					 <li>
+						  	<div id="refresh">
+								  <a class="btn-flat"> 
+									  <i class="large material-icons">refresh</i>
+								  </a>
+							</div>
+					 </li>
+				</ul>
+				</ul>
+				<ul id="nav-mobile" class="center">
+					<li>
+				  		<div class="brand-logo">Notice Me</div>
+					</li>
+				</ul>
+>>>>>>> 6ca25440d7e34d394e4de0c6b6c43de0b3f90a66
 					  <ul id="nav-mobile" class="right">
+						 
 						  <li>
 						  <!--<button type="button" class="btn btn-default btn-lg navbutton" onclick="window.location.href = '/settings'" >
 							  <img src="open-iconic/svg/cog.svg" alt="icon name" style ="height:1em">
 						  </button>-->
+<<<<<<< HEAD
 						  	<div  onclick="window.location.href = '/settings'">  <a class="btn-flat buttonClass"><i class="large material-icons">settings</i></a></div>
+=======
+						  	<div id="settings" onclick="window.location.href = '/settings'"> 
+							   <a class="btn-flat">
+								   <i class="large material-icons">settings</i>
+								</a>
+							</div>
+>>>>>>> 6ca25440d7e34d394e4de0c6b6c43de0b3f90a66
 						  <li>
 					  </ul>
 				  </ul>
@@ -74,7 +110,7 @@
 			    <img class = "my-float" src="open-iconic/svg/plus.svg" alt="icon name">
 			</a>-->
 			<div class="fixed-action-btn">
-			  <a href="/addStock" class="btn-floating btn-large red">
+			  <a href='/addStock' id="aStockBtn" class="btn-floating btn-large red">
 				<i class="large material-icons">add</i>
 			  </a>
 		  </div>
@@ -85,6 +121,10 @@
 
 </body>
 <script>
-
+	$('#aStockBtn').click(function(e){
+		e.preventDefault();
+		$.get('addStock');
+		window.location.href='/addStock';
+	})
 </script>
 </html>
