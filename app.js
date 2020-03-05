@@ -37,7 +37,6 @@ app.set('view engine', 'handlebars');
 // app.use(express.favicon());
 // app.use(express.logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded());
 // app.use(express.methodOverride());
 //app.use(express.cookieParser('Intro HCI secret key'));
 // app.use(express.session());
@@ -159,7 +158,6 @@ app.get('/addStock',  (req,res) => {
 });
 
 app.post('/changePercents', (req, res) =>{
-  console.log('changing pcts');
   user.up = req.body.upPercent;
   user.down = req.body.downPercent;
   res.send('Changed percent!');
