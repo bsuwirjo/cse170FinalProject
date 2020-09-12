@@ -20,7 +20,7 @@
     "express3-handlebars": "*",
     "favicon": "0.0.2",
     "handlebars": "^4.7.3",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "nodejs": "0.0.0",
     "request": "^2.88.2",
     "sass": "^1.26.2",
